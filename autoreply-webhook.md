@@ -41,7 +41,7 @@ Maka endpoint webhook harus menghasilkan response data sebagagai berikut.
 ````
 
 Field | Tipe data | Keterangan
----|---
+---|---|---
 success| boolean | nilai `true` atau `false`. Jika false, tidak diproses.
 data| object | data payload response
 
@@ -49,7 +49,35 @@ data| object | data payload response
 Field `data` memiliki dua buah field: `shortcodes` dan `no_reply`
 
 Field | Tipe data | Keterangan
----|---
+---|---|---
 shortcodes| object | kombinasi key dan value. Tipe data value berupa string.
 no_reply| boolean | true: memerintahkan autoreply untuk abort pengiriman pesan ke tujuan. Default value: false
 
+
+## Contoh
+
+**Template**
+```
+Hai {name}:
+
+Kode promo anda *{coupon}*.
+
+Gunakan pembelian {produk} di link berikut
+
+{link}
+```
+
+**Response endpoint webhook**
+```
+{
+  "success": true,
+  "data": {
+    "shortcodes": {
+      "coupon": "PROMOXYZ",
+      "produk": "Ecourse Mahir Affiliate",
+      "link": "https://toko.online/product/12345/",
+    },
+    "no_reply": true
+  }
+}
+````
