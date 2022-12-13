@@ -27,7 +27,7 @@ Webhook berfungsi untuk preprocessing pesan dan menambahkan shortcode dari data 
 Sebagai contoh, ingin menambahkan data transaksi yang tersedia di website.
 
 Maka endpoint webhook harus menghasilkan response data sebagagai berikut.
-```
+```json
 {
 	"success": true,
 	"data": {
@@ -53,6 +53,20 @@ Field | Tipe data | Keterangan
 shortcodes| object | kombinasi key dan value. Tipe data value berupa string.
 no_reply| boolean | true: memerintahkan autoreply untuk abort pengiriman pesan ke tujuan. Default value: false
 
+## Webhook Payload
+Aplikasi OneSender akan mengirimkan data dalam format json seperti berikut
+```json
+{
+    "body": "/promo",
+    "is_group": "false",
+    "jid": "6281200000001@s.whatsapp.net",
+    "message_type": "text",
+    "phone": "6281200000001",
+    "timestamp": "1670942329"
+}
+
+```
+
 
 ## Contoh
 
@@ -68,7 +82,7 @@ Gunakan pembelian {produk} di link berikut
 ```
 
 **Response endpoint webhook**
-```
+```json
 {
   "success": true,
   "data": {
